@@ -138,6 +138,22 @@ document.addEventListener('DOMContentLoaded', function () {
         let trackIdx    = 1;
         let isCarouselAnimating = false;
 
+      
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'carousel-dots';
+        const dots = Array.from({ length: n }, (_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dotsContainer.appendChild(dot);
+            return dot;
+        });
+        document.querySelector('.carousel').insertAdjacentElement('afterend', dotsContainer);
+
+        function updateDots() {
+            const idx = ((trackIdx - 1) % n + n) % n;
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
         function getVisible() {
             const firstCard = carouselTrack.querySelector('.card');
             if (!firstCard) return VISIBLE;
@@ -178,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
             trackIdx++;
             setPos(true);
             animateEnter(carouselTrack.children[trackIdx + getVisible() - 1]);
+            updateDots();
         }
         function carouselPrev() {
             if (isCarouselAnimating) return;
@@ -185,19 +202,46 @@ document.addEventListener('DOMContentLoaded', function () {
             trackIdx--;
             setPos(true);
             animateEnter(carouselTrack.children[trackIdx]);
+            updateDots();
         }
 
         carouselTrack.addEventListener('transitionend', () => {
             if (trackIdx >= n + 1) { trackIdx -= n; setPos(false); void carouselTrack.offsetWidth; }
             if (trackIdx <= 0)     { trackIdx += n; setPos(false); void carouselTrack.offsetWidth; }
+            updateDots();
             isCarouselAnimating = false;
         });
 
         nextBtn_c.addEventListener('click', carouselNext);
         prevBtn.addEventListener('click', carouselPrev);
-        window.addEventListener('resize', () => setPos(false));
 
+     
+        let autoInterval = null;
+        function startAutoRotate() {
+            clearInterval(autoInterval);
+            autoInterval = setInterval(carouselNext, 3000);
+        }
+
+      
+        let cStartX = 0, cStartY = 0;
+        carouselWin.addEventListener('touchstart', e => {
+            cStartX = e.touches[0].clientX;
+            cStartY = e.touches[0].clientY;
+        }, { passive: true });
+        carouselWin.addEventListener('touchend', e => {
+            if (!isMobile()) return;
+            const dx = cStartX - e.changedTouches[0].clientX;
+            const dy = cStartY - e.changedTouches[0].clientY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+                clearInterval(autoInterval);
+                if (dx > 0) carouselNext(); else carouselPrev();
+                setTimeout(startAutoRotate, 5000);
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', () => { setPos(false); startAutoRotate(); });
         setPos(false);
+        startAutoRotate();
     }
 
     const cardObserver = new IntersectionObserver(entries => {

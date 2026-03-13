@@ -402,6 +402,29 @@ body {
     letter-spacing: 0.3px;
 }
 
+/* Carousel dots (mobile) */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding-top: 14px;
+}
+.carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+}
+.carousel-dot.active {
+    background: var(--primary-600);
+    transform: scale(1.35);
+    box-shadow: 0 0 8px rgba(10, 71, 143, 0.8);
+}
+
 /* Footer */
 .site-footer {
     border-top: 1px solid var(--border);
@@ -493,10 +516,11 @@ body {
     .section { height: auto; min-height: 0; padding: 40px 0; }
     .section-title { font-size: 18px; }
 
-    /* Carousel — 1 carte visible */
-    .carousel { gap: 6px; }
+
+    .carousel { gap: 0; }
     .carousel-track .card { flex: 0 0 100%; }
-    .carousel-btn { width: 34px; height: 34px; font-size: 1.3rem; }
+    .carousel-btn { display: none; }
+   
 
     /* Tech grid */
     .tech-grid {
