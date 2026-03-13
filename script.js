@@ -78,18 +78,20 @@ document.addEventListener('DOMContentLoaded', function () {
         goToSection(currentIndex - 1);
     }
 
+    const isMobile = () => window.innerWidth <= 640;
+
     // Molette
     window.addEventListener('wheel', e => {
-        if (modal.classList.contains('show')) return;
+        if (isMobile() || modal.classList.contains('show')) return;
         e.preventDefault();
         if (isScrolling) return;
         if (e.deltaY > 0) scrollDown();
         else              scrollUp();
     }, { passive: false });
 
-    // Flèches 
+    // Flèches
     document.addEventListener('keydown', e => {
-        if (modal.classList.contains('show')) return;
+        if (isMobile() || modal.classList.contains('show')) return;
         if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); scrollDown(); }
         else if (e.key === 'ArrowUp'  || e.key === 'PageUp')   { e.preventDefault(); scrollUp(); }
     });
@@ -98,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let touchStartY = 0;
     window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
     window.addEventListener('touchend', e => {
-        if (modal.classList.contains('show') || isScrolling) return;
+        if (isMobile() || modal.classList.contains('show') || isScrolling) return;
         const delta = touchStartY - e.changedTouches[0].clientY;
         if (delta > 50)       scrollDown();
         else if (delta < -50) scrollUp();
