@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentation Developpeur</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glow" id="glow"></div>
+
+    <nav class="side-nav">
+        <a class="nav-item active" data-section="hero" href="#hero">
+            <span class="nav-indicator"></span>
+            <span class="nav-label">Présentation</span>
+        </a>
+        <a class="nav-item" data-section="pro" href="#pro">
+            <span class="nav-indicator"></span>
+            <span class="nav-label">Projets</span>
+        </a>
+        <a class="nav-item" data-section="tech" href="#tech">
+            <span class="nav-indicator"></span>
+            <span class="nav-label">Langages</span>
+        </a>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+            <div class="hero-header">
+                <img class="hero-avatar" src="assets/img/me_square.webp" alt="Mathias Monistrol">
+                <h1 class="hero-name">Mathias Monistrol</h1>
+
+            </div>
+            <p class="hero-bio">
+                Développeur passionné par la création d'applications web et mobiles.<br>
+                J'aime concevoir des interfaces soignées et des outils qui répondent à de vrais besoins.
+                j'adore apprendre de nouvelles technologies et les appliquer à des projets concrets.<br>
+                Développer un projet, c’est un peu comme sauter en parachute.
+                Il faut oser faire le premier pas, dépasser l’hésitation… puis profiter pleinement du voyage.
+                Chaque projet terminé est pour moi une montée d’adrénaline suivie d’une grande satisfaction : celle d’avoir transformé une idée en réalité.
+            </p>
+            </div>
+            <img class="hero-illustration" src="assets/img/avblue-sf.png" alt="">
+        </div>
+    </section>
+
+        <section class="section" id="pro">
+        <div class="container">
+            <h2 class="section-title">Projet réalisés, Pro et Perso</h2>
+            <div class="carousel">
+                <button class="carousel-btn carousel-prev" aria-label="Précédent">&#8249;</button>
+                <div class="carousel-window">
+                    <div class="carousel-track">
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_pro">Pro</p>
+                        <h3 class="card-title">Site DemaRoad</h3>
+                        <p class="card-text">Site de presentation de la société DemaRoad.</p>
+                        <div class="actions">
+                            <a class="btn" href="https://www.demaroad.fr/" target="_blank" rel="noopener noreferrer">Lien</a>
+                            
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="HTML" data-value="47">
+                            <span class="skill-label">HTML</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">47.4%</span>
+                        </div>
+                        <div class="skill" data-skill="CSS" data-value="47">
+                            <span class="skill-label">CSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">46.9%</span>
+                        </div>
+                        <div class="skill" data-skill="JavaScript" data-value="6">
+                            <span class="skill-label">JavaScript</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">5.7%</span>
+                        </div>
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_pro">Pro</p>
+                        <h3 class="card-title">Application Demaroad</h3>
+                        <p class="card-text">Application de gestion de documents de transport.</p>
+                        <div class="actions">
+                            <img src="assets/img/drd.png" alt="Application Demaroad">
+                            
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="Flutter - Dart" data-value="60">
+                            <span class="skill-label">Flutter - Dart</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">60%</span>
+                        </div>
+                        <div class="skill" data-skill="SCSS" data-value="3">
+                            <span class="skill-label">SCSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">3%</span>
+                        </div>
+                        <div class="skill" data-skill="JavaScript" data-value="32">
+                            <span class="skill-label">Node.js</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">32%</span>
+                        </div>
+                        <div class="skill" data-skill="HTML" data-value="5">
+                            <span class="skill-label">HTML</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">5%</span>
+                        </div>
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_pro">Pro</p>
+                        <h3 class="card-title">Site Web de L'artiste Blandine Degroote</h3>
+                        <p class="card-text"> <strong>[En cours de développement]</strong><br> Site de presentation et de vente d'oeuvres d'art, avec un CRUD Admin, et l'utilisation de Firebase.</p>
+                        <div class="actions">
+                            <a class="btn" href="https://www.blandinosaure.fr/" target="_blank" rel="noopener noreferrer">Lien</a>
+                            
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="HTML" data-value="47">
+                            <span class="skill-label">React</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">40%</span>
+                        </div>
+                        <div class="skill" data-skill="JavaScript" data-value="6">
+                            <span class="skill-label">Node.js</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">35%</span>
+                        </div>
+                        <div class="skill" data-skill="CSS" data-value="47">
+                            <span class="skill-label">CSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">15%</span>
+                        </div>
+                        <div class="skill" data-skill="JavaScript" data-value="6">
+                            <span class="skill-label">Express</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">10%</span>
+                        </div>
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_perso">Perso</p>
+                        <h3 class="card-title">Chronomètre en C#</h3>
+                        <p class="card-text">application de chronométrage, avec des toggles pour démarrer, arrêter et reset le chronomètre.</p>
+                        <div class="actions">
+                            <img src="assets/img/chrono.png" alt="Chronomètre en C#">
+                            <a class="btn btn-secondary" href="https://github.com/SeyaSix/Chrono" target="_blank" rel="noopener noreferrer">Code source</a>
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="C#" data-value="100">
+                            <span class="skill-label">C#</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">100%</span>
+                        </div>
+
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_perso">Perso</p>
+                        <h3 class="card-title">Papier Bulles</h3>
+                        <p class="card-text">juste un petit jeu de papier bulles, avec des bulles a éclaté.</p>
+                        <div class="actions">
+                            <a class="btn" href="https://seyasix.github.io/bubble_paper/" target="_blank" rel="noopener noreferrer">Lien démo</a>
+                            <a class="btn btn-secondary" href="https://github.com/SeyaSix/bubble_paper/" target="_blank" rel="noopener noreferrer">Code source</a>
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="JavaScript" data-value="67.5">
+                            <span class="skill-label">JavaScript</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">67.5%</span>
+                        </div>
+
+                        <div class="skill" data-skill="HTML" data-value="4.9">
+                            <span class="skill-label">HTML</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">4.9%</span>
+                        </div>
+
+                        <div class="skill" data-skill="CSS" data-value="27.6">
+                            <span class="skill-label">CSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">27.6%</span>
+                        </div>
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_perso">Perso</p>
+                        <h3 class="card-title">App Web Pointage d'heure</h3>
+                        <p class="card-text">Application pour le pointage de ses heures de travail en local avec indexDB.</p>
+                        <div class="actions">
+                            <a class="btn" href="https://seyasix.github.io/pointage/" target="_blank" rel="noopener noreferrer">Lien</a>
+                            <a class="btn btn-secondary" href="https://github.com/SeyaSix/pointage/tree/main" target="_blank" rel="noopener noreferrer">Code source</a>
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="JavaScript" data-value="32">
+                            <span class="skill-label">JavaScript</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">85%</span>
+                        </div>
+                        <div class="skill" data-skill="HTML" data-value="5">
+                            <span class="skill-label">HTML</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">5%</span>
+                        </div>
+                        <div class="skill" data-skill="CSS" data-value="3">
+                            <span class="skill-label">CSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">10%</span>
+                        </div>
+
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_perso">Perso</p>
+                        <h3 class="card-title">Application Web pour le jeu Phasmophobia</h3>
+                        <p class="card-text">Application pour le jeu Phasmophobia, avec des informations sur les entitées que l'on peut rencontrer dans le jeu.</p>
+                        <div class="actions">
+                            <a class="btn" href="https://seyasix.github.io/phasmo/" target="_blank" rel="noopener noreferrer">Lien</a>
+                            <a class="btn btn-secondary" href="https://github.com/SeyaSix/phasmo/tree/master" target="_blank" rel="noopener noreferrer">Code source</a>
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="JavaScript" data-value="6">
+                            <span class="skill-label">JavaScript</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">75</span>
+                        </div>
+                        <div class="skill" data-skill="CSS" data-value="47">
+                            <span class="skill-label">CSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">20%</span>
+                        </div>
+                        <div class="skill" data-skill="HTML" data-value="47">
+                            <span class="skill-label">HTML</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">5%</span>
+                        </div>
+
+
+                    </aside>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <p class="type_perso">Perso</p>
+                        <h3 class="card-title">App Web Watch List</h3>
+                        <p class="card-text">Application de watch list pour les series et films, en local avec indexDB.</p>
+                        <div class="actions">
+                            <a class="btn" href="https://seyasix.github.io/Watch-list/" target="_blank" rel="noopener noreferrer">Lien</a>
+                            <a class="btn btn-secondary" href="https://github.com/SeyaSix/Watch-list/tree/main" target="_blank" rel="noopener noreferrer">Code source</a>
+                        </div>
+                    </div>
+                    <aside class="skills" aria-label="Langages utilisés">
+                        <div class="skill" data-skill="JavaScript" data-value="32">
+                            <span class="skill-label">JavaScript</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">55%</span>
+                        </div>
+                        <div class="skill" data-skill="HTML" data-value="5">
+                            <span class="skill-label">HTML</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">20%</span>
+                        </div>
+                        <div class="skill" data-skill="CSS" data-value="3">
+                            <span class="skill-label">CSS</span>
+                            <div class="bar"><span class="fill"></span></div>
+                            <span class="percent">25%</span>
+                        </div>
+
+                    </aside>
+                </article>
+
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-next" aria-label="Suivant">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tech">
+        <div class="container">
+            <h2 class="section-title">Langages de programmation que je maîtrise</h2>
+            <div class="tech-grid">
+
+                <a class="tech-card" href="https://developer.mozilla.org/fr/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML"></div>
+                    <span class="tech-name">HTML</span>
+                </a>
+
+                <a class="tech-card" href="https://developer.mozilla.org/fr/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS"></div>
+                    <span class="tech-name">CSS</span>
+                </a>
+
+                <a class="tech-card" href="https://developer.mozilla.org/fr/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
+                    <span class="tech-name">JavaScript</span>
+                </a>
+
+                <a class="tech-card" href="https://sass-lang.com/documentation/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg" alt="SCSS"></div>
+                    <span class="tech-name">SASS</span>
+                </a>
+
+                <a class="tech-card" href="https://www.php.net/docs.php" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"></div>
+                    <span class="tech-name">PHP</span>
+                </a>
+
+                <a class="tech-card" href="https://nodejs.org/docs/latest/api/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js"></div>
+                    <span class="tech-name">Node.js</span>
+                </a>
+
+                <a class="tech-card" href="https://expressjs.com/fr/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" class="dark-icon"></div>
+                    <span class="tech-name">Express</span>
+                </a>
+
+                <a class="tech-card" href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React"></div>
+                    <span class="tech-name">React</span>
+                </a>
+
+                <a class="tech-card" href="https://docs.flutter.dev/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter"></div>
+                    <span class="tech-name">Flutter</span>
+                </a>
+
+                <a class="tech-card" href="https://learn.microsoft.com/fr-fr/dotnet/csharp/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#"></div>
+                    <span class="tech-name">C#</span>
+                </a>
+
+                <a class="tech-card" href="https://git-scm.com/doc" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></div>
+                    <span class="tech-name">Git / GitHub</span>
+                </a>
+
+                <a class="tech-card" href="https://developer.wordpress.org/" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" alt="WordPress"></div>
+                    <span class="tech-name">WordPress</span>
+                </a>
+
+                <a class="tech-card" href="https://www.figma.com/developers" target="_blank" rel="noopener noreferrer">
+                    <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma"></div>
+                    <span class="tech-name">Figma</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 — SeyaSix</p>
+        </div>
+    </footer>
+
+    
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
