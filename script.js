@@ -1,5 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Parachutiste hero-btn
+    const parachutistWrap = document.getElementById('parachutist-wrap');
+    const heroBtn = document.querySelector('.hero-btn');
+    if (heroBtn && parachutistWrap) {
+        heroBtn.addEventListener('click', () => {
+            if (parachutistWrap.classList.contains('falling')) return;
+            parachutistWrap.style.opacity = '1';
+            parachutistWrap.classList.add('falling');
+
+            setTimeout(() => {
+                const mailLink = document.createElement('a');
+                mailLink.href = 'mailto:m.monistrol@outlook.fr';
+                document.body.appendChild(mailLink);
+                mailLink.click();
+                document.body.removeChild(mailLink);
+
+                
+                parachutistWrap.classList.remove('falling');
+                parachutistWrap.classList.add('landing');
+                setTimeout(() => {
+                    parachutistWrap.classList.remove('landing');
+                    parachutistWrap.style.opacity = '0';
+                }, 320);
+            }, 2000);
+        });
+    }
+
     // Glow souris
     const glow = document.getElementById('glow');
     const isTouchDevice = () => window.matchMedia('(hover: none)').matches;

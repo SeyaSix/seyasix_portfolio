@@ -102,9 +102,24 @@ body {
     font-size: 1.05rem;
 }
 .hero-btn {
+    display: inline-block;
+    padding: 12px 28px;
     font-size: 1rem;
-    padding: 12px 24px;
+    font-family: inherit;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid #00264d;
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    box-shadow: 0 4px 18px rgba(0, 51, 105, 0.35);
 }
+.hero-btn:hover {
+    transform: translateY(-2px);
+    background: var(--primary-600);
+    box-shadow: 0 6px 22px rgba(0, 51, 105, 0.5);
+}
+.hero-btn:active { transform: translateY(0); }
 
 /* Sections */
 .section {
@@ -400,6 +415,45 @@ body {
     text-align: center;
     font-weight: 500;
     letter-spacing: 0.3px;
+}
+
+/* Parachutist hero-btn */
+.parachutist-wrap {
+    position: fixed;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+.parachutist-wrap.falling {
+    animation: chute-fall 2s cubic-bezier(0.3, 0.05, 0.4, 1) forwards;
+    opacity: 1;
+}
+.parachutist-wrap.falling .parachutist-img {
+    animation: chute-swing 2s ease-in-out forwards;
+    width: 100%;
+}
+.parachutist-wrap.landing {
+    animation: chute-land 0.3s ease-in forwards;
+}
+@keyframes chute-fall {
+    from { top: -160px; }
+    to   { top: calc(70vh - 80px); }
+}
+@keyframes chute-swing {
+    0%   { transform: rotate(-6deg); }
+    20%  { transform: rotate(6deg); }
+    45%  { transform: rotate(-4deg); }
+    70%  { transform: rotate(4deg); }
+    90%  { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+}
+@keyframes chute-land {
+    from { opacity: 1; transform: translateX(-50%) scale(1); }
+    to   { opacity: 0; transform: translateX(-50%) scale(1.15); }
 }
 
 /* Carousel dots (mobile) */
