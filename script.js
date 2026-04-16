@@ -1,5 +1,84 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Init EmailJS
+    emailjs.init({ publicKey: 'N5qgL5Vk36EiPn92P' });
+
+    // Contact Modal
+    const contactModal       = document.getElementById('contactModal');
+    const contactCloseBtn    = document.querySelector('.contact-close');
+    const contactForm        = document.getElementById('contactForm');
+    const contactFeedback    = document.getElementById('contactFeedback');
+    const contactSubmitBtn   = document.getElementById('contactSubmitBtn');
+
+    function openContactModal() {
+        contactModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('contact-email').focus();
+    }
+
+    function closeContactModal() {
+        contactModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        contactForm.reset();
+        contactFeedback.textContent = '';
+        contactFeedback.className = 'contact-feedback';
+        document.querySelectorAll('#contactForm .invalid').forEach(el => el.classList.remove('invalid'));
+        contactSubmitBtn.disabled = false;
+        contactSubmitBtn.textContent = 'Envoyer';
+    }
+
+    contactCloseBtn.addEventListener('click', closeContactModal);
+    contactModal.addEventListener('click', e => { if (e.target === contactModal) closeContactModal(); });
+
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const emailInput   = document.getElementById('contact-email');
+        const messageInput = document.getElementById('contact-message');
+        let valid = true;
+
+        [emailInput, messageInput].forEach(el => el.classList.remove('invalid'));
+
+        if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.classList.add('invalid');
+            valid = false;
+        }
+        if (!messageInput.value.trim()) {
+            messageInput.classList.add('invalid');
+            valid = false;
+        }
+        if (!valid) {
+            contactFeedback.textContent = 'Veuillez remplir les champs obligatoires correctement.';
+            contactFeedback.className = 'contact-feedback error';
+            return;
+        }
+
+        contactSubmitBtn.disabled = true;
+        contactSubmitBtn.textContent = 'Envoi en cours…';
+        contactFeedback.textContent = '';
+        contactFeedback.className = 'contact-feedback';
+
+        try {
+            const templateParams = {
+                from_email : document.getElementById('contact-email').value.trim(),
+                message    : document.getElementById('contact-message').value.trim(),
+                societe    : document.getElementById('contact-company').value.trim() || '',
+                phone      : document.getElementById('contact-phone').value.trim() || '',
+                name       : document.getElementById('contact-name').value.trim() || '',
+            };
+            await emailjs.send('service_06igck5', 'template_pyramba', templateParams);
+            contactFeedback.textContent = 'Message envoyé avec succès ! Je vous répondrai très vite.';
+            contactFeedback.className = 'contact-feedback success';
+            contactForm.reset();
+            setTimeout(closeContactModal, 3000);
+        } catch (err) {
+            console.error('EmailJS error:', err);
+            contactFeedback.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+            contactFeedback.className = 'contact-feedback error';
+            contactSubmitBtn.disabled = false;
+            contactSubmitBtn.textContent = 'Envoyer';
+        }
+    });
+
     // Parachutiste hero-btn
     const parachutistWrap = document.getElementById('parachutist-wrap');
     const heroBtn = document.querySelector('.hero-btn');
@@ -10,13 +89,8 @@ document.addEventListener('DOMContentLoaded', function () {
             parachutistWrap.classList.add('falling');
 
             setTimeout(() => {
-                const mailLink = document.createElement('a');
-                mailLink.href = 'mailto:m.monistrol@outlook.fr';
-                document.body.appendChild(mailLink);
-                mailLink.click();
-                document.body.removeChild(mailLink);
+                openContactModal();
 
-                
                 parachutistWrap.classList.remove('falling');
                 parachutistWrap.classList.add('landing');
                 setTimeout(() => {
@@ -107,18 +181,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isMobile = () => window.innerWidth <= 640;
 
+    const isAnyModalOpen = () => modal.classList.contains('show') || contactModal.classList.contains('show');
+
     // Molette
     window.addEventListener('wheel', e => {
-        if (isMobile() || modal.classList.contains('show')) return;
+        if (isMobile() || isAnyModalOpen()) return;
         e.preventDefault();
         if (isScrolling) return;
         if (e.deltaY > 0) scrollDown();
         else              scrollUp();
     }, { passive: false });
 
-    // Flèches
+    // Flèches + fermeture modals au clavier
     document.addEventListener('keydown', e => {
-        if (isMobile() || modal.classList.contains('show')) return;
+        if (e.key === 'Escape') {
+            if (contactModal.classList.contains('show')) { closeContactModal(); return; }
+            if (modal.classList.contains('show'))        { closeModal(); return; }
+        }
+        if (isMobile() || isAnyModalOpen()) return;
         if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); scrollDown(); }
         else if (e.key === 'ArrowUp'  || e.key === 'PageUp')   { e.preventDefault(); scrollUp(); }
     });
@@ -127,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let touchStartY = 0;
     window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
     window.addEventListener('touchend', e => {
-        if (isMobile() || modal.classList.contains('show') || isScrolling) return;
+        if (isMobile() || isAnyModalOpen() || isScrolling) return;
         const delta = touchStartY - e.changedTouches[0].clientY;
         if (delta > 50)       scrollDown();
         else if (delta < -50) scrollUp();
@@ -322,7 +402,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
-    });
 });
