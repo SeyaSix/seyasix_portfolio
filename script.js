@@ -189,7 +189,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function cardWidth() {
             const firstCard = carouselTrack.querySelector('.card');
-            return firstCard ? firstCard.offsetWidth : carouselWin.offsetWidth / VISIBLE;
+            if (!firstCard) return carouselWin.offsetWidth / VISIBLE;
+            const gap = parseFloat(getComputedStyle(carouselTrack).gap) || 0;
+            return firstCard.offsetWidth + gap;
         }
 
         function setPos(animated) {
