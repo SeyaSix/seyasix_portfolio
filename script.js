@@ -348,6 +348,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, { passive: true });
 
+        carouselWin.addEventListener('mouseenter', () => clearInterval(autoInterval));
+        carouselWin.addEventListener('mouseleave', () => startAutoRotate());
+
         window.addEventListener('resize', () => { setPos(false); startAutoRotate(); });
         setPos(false);
         startAutoRotate();
@@ -386,8 +389,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalImage  = document.getElementById('modalImage');
     const closeBtn    = document.querySelector('.close');
 
-    document.querySelectorAll('.actions img').forEach(img => {
+    document.querySelectorAll('.actions img, .gallery-img').forEach(img => {
         img.addEventListener('click', function () {
+            const src = this.getAttribute('src');
+            if (!src || !src.trim()) return;
             modalImage.src = this.src;
             modalImage.alt = this.alt;
             modal.classList.add('show');
