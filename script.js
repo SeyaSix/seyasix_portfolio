@@ -236,11 +236,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         
-        carouselTrack.querySelectorAll('.clone .skill').forEach(skill => {
-            const fill = skill.querySelector('.fill');
-            if (fill) fill.style.width = Math.max(0, Math.min(100,
-                parseFloat(skill.getAttribute('data-value') || '0'))) + '%';
-        });
 
         let trackIdx    = 1;
         let isCarouselAnimating = false;
@@ -251,6 +246,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const dots = Array.from({ length: n }, (_, i) => {
             const dot = document.createElement('span');
             dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => {
+                if (isCarouselAnimating) return;
+                const target = i + 1;
+                if (target === trackIdx) return;
+                clearInterval(autoInterval);
+                isCarouselAnimating = true;
+                trackIdx = target;
+                setPos(true);
+                updateDots();
+                setTimeout(startAutoRotate, 5000);
+            });
             dotsContainer.appendChild(dot);
             return dot;
         });
@@ -358,31 +364,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const cardObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.querySelectorAll('.skill').forEach(skill => {
+                    const value = parseFloat(skill.getAttribute('data-value') || '0');
+                    const fill = skill.querySelector('.fill');
+                    if (fill) requestAnimationFrame(() => {
+                        fill.style.width = Math.max(0, Math.min(100, value)) + '%';
+                    });
+                });
+            }
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.card').forEach(card => cardObserver.observe(card));
-
-    const skills = document.querySelectorAll('.skill');
-
-    const animateBars = () => {
-        skills.forEach(skill => {
-            const value = parseFloat(skill.getAttribute('data-value') || '0');
-            const fill = skill.querySelector('.fill');
-            if (fill) requestAnimationFrame(() => {
-                fill.style.width = Math.max(0, Math.min(100, value)) + '%';
-            });
-        });
-    };
-
-    const barObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) { animateBars(); obs.disconnect(); }
-        });
-    }, { threshold: 0.2 });
-    const firstSection = document.querySelector('.section');
-    if (firstSection) barObserver.observe(firstSection);
-    else animateBars();
 
     // Modal images
     const modal       = document.getElementById('imageModal');
